@@ -2,39 +2,45 @@
 
 ## usersテーブル
 
-|column  |Type  |options    |
-|--------|------|-----------|
-|name    |string|null: false|
-|email   |string|null: false|
-|password|string|null: false|
-
+|column               |Type   |options    |
+|---------------------|-------|-----------|
+|name                 |string |null: false|
+|email                |string |null: false|
+|password             |string |null: false|
+|password_confirmation|string |null: false|
+|family_name          |string |null: false|
+|first_name           |string |null: false|
+|family_name_kana     |string |null: false|
+|birth_year           |integer|null: false|
+|birth_month          |integer|null: false|
+|birth_day            |integer|null: false|
 ### Association
 
 - has_many :user_items
-- has_many :user_purchasess
+- has_many :user_purchases
 - has_many :items, through: user_items
-- has_many :purchasess, through: user_purchasess
+- has_many :purchases, through: user_purchases
 
 ## itemsテーブル
 
-|column          |Type   |options    |
-|----------------|-------|-----------|
-|image           |string |null: false|
-|item_name       |string |null: false|
-|item_explanation|text   |null: false|
-|category        |string |null: false|
-|item_status     |text   |null: false|
-|delivery_fee    |integer|null: false|
-|shipping_area   |string |null: false|
-|days_to_ships   |integer|null: false|
-|price           |integer|null: false|
-|seller_name     |string |null: false|
+|column          |Type     |options          |
+|----------------|---------|-----------------|
+|item_name       |string   |null: false      |
+|item_explanation|text     |null: false      |
+|category_id     |integer  |null: false      |
+|item_status_id  |integer  |null: false      |
+|delivery_fee_id |integer  |null: false      |
+|shipping_area_id|integer  |null: false      |
+|days_to_ships_id|integer  |null: false      |
+|price           |integer  |null: false      |
+|seller_name     |string   |null: false      |
+|user            |reference|foreign_key: true|
 
 ### Association
 
 - has_many :user_items
 - has_many :users, through: user_items
-- has_one :purchasess
+- has_one :purchases
 
 ## user_itemsテーブル
 
@@ -48,39 +54,42 @@
 - belongs_to :user
 - belongs_to :item
 
-## purchasessテーブル
+## purchasesテーブル
 
-|column    |Type  |options    |
-|----------|------|-----------|
-|buyer_name|string|null: false|
+|column    |Type     |options          |
+|----------|---------|-----------------|
+|buyer_name|string   |null: false      |
+|user      |reference|foreign_key: true|
 
 ### Associationテーブル
 
-- has_many :user_purchasess
-- has_many :users, through: user_purchasess
+- has_many :user_purchases
+- has_many :users, through: user_purchases
 - has_one :deliverys
 
-## user_purchasessテーブル
+## user_purchasesテーブル
 
-|column|Type     |options          |
-|------|---------|-----------------|
-|user  |reference|foreign_key: true|
+|column   |Type     |options          |
+|---------|---------|-----------------|
+|user     |reference|foreign_key: true|
+|purchases|reference|foreign_key: true|
 
 ### Association
 
 - belongs_to :user
-- belongs_to :purchases
+- belongs_to :purchase
 
 ## deliverysテーブル
 
 |column        |Type   |options    |
 |--------------|-------|-----------|
-|postal_code   |integer|null: false|
+|postal_code   |string |null: false|
 |prefectures   |string |null: false|
 |municipalities|string |null: false|
 |address       |string |null: false|
-|phone_number  |integer|null: false|
+|phone_number  |string |null: false|
+|building_name |string |           |
 
 ### Associationテーブル
 
-- has_one :purchasess
+- has_one :purchases
