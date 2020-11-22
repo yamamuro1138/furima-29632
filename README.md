@@ -15,10 +15,8 @@
 
 ### Association
 
-- has_many :user_items
-- has_many :user_purchases
-- has_many :items, through: user_items
-- has_many :purchases, through: user_purchases
+- has_many :items
+- has_many :purchases
 
 ## itemsテーブル
 
@@ -36,46 +34,35 @@
 
 ### Association
 
-- has_many :user_items
-- has_many :users, through: user_items
+- belongs_to :user
 - has_one :purchases
 
-## user_itemsテーブル
-
-|column|Type     |options          |
-|------|---------|-----------------|
-|user  |reference|foreign_key: true|
-|item  |reference|foreign_key: true|
-
-### Association
-
-- belongs_to :user
-- belongs_to :item
 
 ## purchasesテーブル
 
 |column    |Type     |options          |
 |----------|---------|-----------------|
 |user      |reference|foreign_key: true|
-|item_id   |reference|foreign_key: true|
+|item      |reference|foreign_key: true|
 ### Associationテーブル
 
-- has_many :user_purchases
-- has_many :users, through: user_purchases
-- has_one :deliverys
+- belongs_to :user
+- belongs_to :item
+- has_one :delivery
 
 
 ## deliverysテーブル
 
-|column        |Type   |options    |
-|--------------|-------|-----------|
-|postal_code   |string |null: false|
-|prefectures   |string |null: false|
-|municipalities|string |null: false|
-|address       |string |null: false|
-|phone_number  |string |null: false|
-|building_name |string |           |
+|column        |Type     |options            |
+|--------------|---------|-------------------|
+|postal_code   |string   |null: false        |
+|prefectures_id|integer  |null: false        |
+|municipalities|string   |null: false        |
+|address       |string   |null: false        |
+|phone_number  |string   |null: false        |
+|building_name |string   |                   |
+|purchase      |reference|foreign_key: true  |
 
 ### Associationテーブル
 
-- has_one :purchases
+- belongs_to :purchase
