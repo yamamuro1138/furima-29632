@@ -7,11 +7,11 @@
 |name                 |string  |null: false|
 |email                |string  |null: false|
 |encrypted_password   |string  |null: false|
-|password_confirmation|string  |null: false|
 |family_name          |string  |null: false|
 |first_name           |string  |null: false|
+|first_name_kana      |string  |null: false|
 |family_name_kana     |string  |null: false|
-|birthday             |datetime|null: false|
+|birthday             |date    |null: false|
 
 ### Association
 
@@ -56,26 +56,14 @@
 
 |column    |Type     |options          |
 |----------|---------|-----------------|
-|buyer_name|string   |null: false      |
 |user      |reference|foreign_key: true|
-|item_id   |integer  |foreign_key: true|
+|item_id   |reference|foreign_key: true|
 ### Associationテーブル
 
 - has_many :user_purchases
 - has_many :users, through: user_purchases
 - has_one :deliverys
 
-## user_purchasesテーブル
-
-|column   |Type     |options          |
-|---------|---------|-----------------|
-|user     |reference|foreign_key: true|
-|purchases|reference|foreign_key: true|
-
-### Association
-
-- belongs_to :user
-- belongs_to :purchase
 
 ## deliverysテーブル
 
