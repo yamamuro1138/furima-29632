@@ -38,11 +38,6 @@ ActiveRecord::Schema.define(version: 2020_12_04_095114) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
     t.text "explanation", null: false
-    t.integer "category_id", null: false
-    t.integer "status_id", null: false
-    t.integer "delivery_fee_id", null: false
-    t.integer "shipping_area_id", null: false
-    t.integer "days_to_ships_id", null: false
     t.integer "price", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_items_on_user_id"
