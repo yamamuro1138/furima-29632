@@ -11,8 +11,8 @@ class Item < ApplicationRecord
   #バリデーションの設定
   with_options presence: true do
     validates :image
-    validates :name
-    validates :explanation
+    validates :name, length: { maximum: 40 }
+    validates :explanation, length: { maximum: 1000 }
     validates :price, format: {with: /\A[0-9]+\z/}, numericality: {only_integer: true, greater_than: 300, less_than: 9999999}
 
     with_options numericality: { other_than: 1} do
