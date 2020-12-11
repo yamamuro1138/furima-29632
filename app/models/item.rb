@@ -13,7 +13,7 @@ class Item < ApplicationRecord
     validates :image
     validates :name, length: { maximum: 40 }
     validates :explanation, length: { maximum: 1000 }
-    validates :price, format: {with: /\A[0-9]+\z/}, numericality: {only_integer: true, greater_than: 300, less_than: 9999999}
+    validates :price, format: {with: /\A[0-9]+\z/}, numericality: { greater_than: 300, less_than: 9999999}
 
     with_options numericality: { other_than: 1} do
       validates :category_id
@@ -22,5 +22,6 @@ class Item < ApplicationRecord
       validates :shipping_area_id
       validates :days_to_ships_id
     end
+    #validates :price, numericality: { greater_than: 300, less_than: 9999999}
   end
 end
