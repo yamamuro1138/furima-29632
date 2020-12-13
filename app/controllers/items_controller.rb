@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
 
     if @item.valid?
       @item.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render :new
     end

@@ -5,13 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-    #ユーザー情報
+  # ユーザー情報
   with_options presence: true do
     validates :name
     validates :birthday
-    #本人情報
+    # 本人情報
     with_options format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ } do
-      validates :family_name 
+      validates :family_name
       validates :first_name
     end
     with_options format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/ } do
@@ -20,7 +20,7 @@ class User < ApplicationRecord
     end
   end
   validates :email, uniqueness: true
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX
   validates :password, confirmation: true
 end

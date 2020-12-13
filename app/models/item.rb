@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   belongs_to_active_hash :status
@@ -8,20 +7,20 @@ class Item < ApplicationRecord
   belongs_to_active_hash :days_to_ship
   belongs_to :user
   has_one_attached :image
-  #バリデーションの設定
+  # バリデーションの設定
   with_options presence: true do
     validates :image
     validates :name, length: { maximum: 40 }
     validates :explanation, length: { maximum: 1000 }
-    validates :price, format: {with: /\A[0-9]+\z/}, numericality: { greater_than: 300, less_than: 9999999}
+    validates :price, format: { with: /\A[0-9]+\z/ }, numericality: { greater_than: 300, less_than: 9_999_999 }
 
-    with_options numericality: { other_than: 1} do
+    with_options numericality: { other_than: 1 } do
       validates :category_id
       validates :status_id
       validates :delivery_fee_id
       validates :shipping_area_id
       validates :days_to_ships_id
     end
-    #validates :price, numericality: { greater_than: 300, less_than: 9999999}
+    # validates :price, numericality: { greater_than: 300, less_than: 9999999}
   end
 end
