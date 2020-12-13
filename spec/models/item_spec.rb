@@ -48,30 +48,30 @@ RSpec.describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ships can't be blank")
       end
-      it "catgoryで1が選択された場合は保存できないこと" do
+      it 'catgoryで1が選択された場合は保存できないこと' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
-      it "statusで1が選択された場合は保存できないこと" do
+      it 'statusで1が選択された場合は保存できないこと' do
         @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status must be other than 1")
+        expect(@item.errors.full_messages).to include('Status must be other than 1')
       end
-      it "shipping_areaで1が選択された場合は保存できないこと" do
+      it 'shipping_areaで1が選択された場合は保存できないこと' do
         @item.shipping_area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipping area must be other than 1')
       end
-      it "delivery_feeで1が選択された場合は保存できないこと" do
+      it 'delivery_feeで1が選択された場合は保存できないこと' do
         @item.delivery_fee_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+        expect(@item.errors.full_messages).to include('Delivery fee must be other than 1')
       end
-      it "days_to_shipsで1が選択された場合は保存できないこと" do
+      it 'days_to_shipsで1が選択された場合は保存できないこと' do
         @item.days_to_ships_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Days to ships must be other than 1")
+        expect(@item.errors.full_messages).to include('Days to ships must be other than 1')
       end
       it 'priceがないと保存できないこと' do
         @item.price = ''
