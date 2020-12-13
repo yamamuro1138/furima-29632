@@ -21,6 +21,5 @@ class Item < ApplicationRecord
       validates :shipping_area_id
       validates :days_to_ships_id
     end
-    # validates :price, numericality: { greater_than: 300, less_than: 9999999}
   end
 end
