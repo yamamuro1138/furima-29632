@@ -39,8 +39,8 @@ class ItemsController < ApplicationController
   def destroy
     if @item.user_id == current_user.id
       @item.destroy
-      redirect_to :root
     end
+    redirect_to :root
   end
 
   def item_params
