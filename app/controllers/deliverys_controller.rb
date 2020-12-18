@@ -1,2 +1,5 @@
 class DeliverysController < ApplicationController
-end
+  
+  def index
+    @purchase_delivery = PurchaseDelivery.new
+  end
