@@ -53,15 +53,15 @@
 
 ## deliverysテーブル
 
-|column        |Type      |options            |
-|--------------|----------|-------------------|
-|postal_code   |string    |null: false        |
-|prefectures_id|integer   |null: false        |
-|municipalities|string    |null: false        |
-|address       |string    |null: false        |
-|phone_number  |string    |null: false        |
-|building_name |string    |                   |
-|purchase      |references|foreign_key: true  |
+|column          |Type      |options            |
+|----------------|----------|-------------------|
+|postal_code     |string    |null: false        |
+|shipping_area_id|integer   |null: false        |
+|municipalities  |string    |null: false        |
+|address         |string    |null: false        |
+|phone_number    |string    |null: false        |
+|building_name   |string    |                   |
+|purchase        |references|foreign_key: true  |
 
 ### Associationテーブル
 
