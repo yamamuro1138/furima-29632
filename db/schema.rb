@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_12_18_084303) do
 
   create_table "deliveries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postal_code", null: false
-    t.integer "prefectures_id", null: false
+    t.integer "shipping_area_id", null: false
     t.string "municipalities", null: false
     t.string "address", null: false
     t.string "phone_number", null: false

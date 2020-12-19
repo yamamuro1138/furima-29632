@@ -3,7 +3,7 @@ class CreateDeliveries < ActiveRecord::Migration[6.0]
     create_table :deliveries do |t|
       
       t.string :postal_code,            null: false
-      t.integer :prefectures_id,        null: false
+      t.integer :shipping_area_id,        null: false
       t.string :municipalities,         null: false
       t.string :address,                null: false
       t.string :phone_number,           null: false
