@@ -1,7 +1,7 @@
 class PurchaseDelivery
 
   include ActiveModel::Model
-  attr_accessor :token, :postal_code, :prefecture_id, :municipalities, :address, :phone_number, :building_name, :user_id, :item_id
+  attr_accessor :token, :postal_code, :shipping_area_id, :municipalities, :address, :phone_number, :building_name, :user_id, :item_id
 
   with_options presence: true do
     validates :postal_code, format: {with: /-/ }
@@ -12,6 +12,6 @@ class PurchaseDelivery
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
-    Delivery.create(postal_code: postal_code, prefecture_id: prefecture_id, municipalities: municipalities, address: address, phone_number: phone_number, purchase_id: purchase.id)
+    Delivery.create(postal_code: postal_code, shipping_area_id: shipping_area_id, municipalities: municipalities, address: address, phone_number: phone_number, purchase_id: purchase.id, building_name: building_name)
   end
 end
