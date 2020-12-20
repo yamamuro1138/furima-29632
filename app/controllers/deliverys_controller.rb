@@ -1,6 +1,6 @@
 class DeliverysController < ApplicationController
-  
-  def index
+  before_action :authenticate_user!, only: :index
+    def index
     item_find
     @purchase_delivery = PurchaseDelivery.new
   end
