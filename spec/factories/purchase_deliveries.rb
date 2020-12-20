@@ -8,8 +8,6 @@ FactoryBot.define do
     building_name      {'東京ハイツ'}
     user_id            {1}
     item_id            {1}
-
-    association :user
-    association :item
+    token              {"tok_abcdefghijk00000000000000000"}
   end
 end
