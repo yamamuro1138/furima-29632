@@ -7,7 +7,8 @@ class DeliverysController < ApplicationController
 
   def create
     @purchase_delivery = PurchaseDelivery.new(delivery_params)
-    if @purchase_delivery.save
+    if @purchase_delivery.valid? 
+      @purchase_delivery.save
       return redirect_to root_path
     else
       item_find
