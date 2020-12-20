@@ -1,5 +1,5 @@
 const pay = () => {
-  Payjp.setPublicKey("pk_test_***************");
+  Payjp.setPublicKey("pk_test_a43a1e872781924f4224a34d");
   const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -23,12 +23,12 @@ const pay = () => {
         debugger;
       }
 
-      document.getElementById("purchase_delivery_number").removeAttribute("name");
-      document.getElementById("purchase_delivery_cvc").removeAttribute("cvc");
-      document.getElementById("purchase_delivery_month").removeAttribute("month");
-      document.getElementById("purchase_delivery_year").removeAttribute("year");
+      document.getElementById("card-number").removeAttribute("name");
+      document.getElementById("card-cvc").removeAttribute("name");
+      document.getElementById("card-exp-month").removeAttribute("name");
+      document.getElementById("card-exp-year").removeAttribute("name");
 
-      document.getElementById("charge-form").onsubmit();
+      document.getElementById("charge-form").submit();
     });
   });
 };
