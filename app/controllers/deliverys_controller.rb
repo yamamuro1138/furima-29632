@@ -8,7 +8,6 @@ class DeliverysController < ApplicationController
   def create
     @purchase_delivery = PurchaseDelivery.new(delivery_params)
     if @purchase_delivery.valid? 
-      pay_item
       @purchase_delivery.save
       return redirect_to root_path
     else
@@ -24,14 +23,5 @@ class DeliverysController < ApplicationController
 
   def item_find
     @item = Item.find(params[:item_id])
-  end
-
-  def pay_item
-    Payjp.api_key = "sk_test_bcbce41f5d0555a285f3c2b5"
-    Payjp::Charge.create(
-      amount: item_find[:price],
-      card: delivery_params[:token],
-      currency: 'jpy'
-    )
   end
 end
