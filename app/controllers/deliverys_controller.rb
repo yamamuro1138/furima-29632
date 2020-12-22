@@ -1,6 +1,6 @@
 class DeliverysController < ApplicationController
   before_action :authenticate_user!, only: :index
-    def index
+  def index
     item_find
     @purchase_delivery = PurchaseDelivery.new
   end
@@ -27,7 +27,7 @@ class DeliverysController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_***********"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: item_find[:price],
       card: delivery_params[:token],
