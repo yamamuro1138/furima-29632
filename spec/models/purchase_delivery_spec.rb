@@ -53,5 +53,10 @@ RSpec.describe PurchaseDelivery, type: :model do
       @pd.valid?
       expect(@pd.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
     end
+    it 'tokenが空では購入できないこと' do
+      @pd.token = ''
+      @pd.valid?
+      expect(@pd.errors.full_messages).to include("Token can't be blank")
+    end
   end
 end
