@@ -19,9 +19,9 @@ RSpec.describe PurchaseDelivery, type: :model do
       expect(@pd.errors.full_messages).to include("Postal code can't be blank")
     end
     it 'postal_codeにはハイフンがないと購入できない' do
-      @pd.postal_code = "1234567"
+      @pd.postal_code = '1234567'
       @pd.valid?
-      expect(@pd.errors.full_messages).to include("Postal code is invalid")
+      expect(@pd.errors.full_messages).to include('Postal code is invalid')
     end
     it 'shipping_areaが空だと購入できない' do
       @pd.shipping_area_id = ''
@@ -42,16 +42,16 @@ RSpec.describe PurchaseDelivery, type: :model do
       @pd.phone_number = ''
       @pd.valid?
       expect(@pd.errors.full_messages).to include("Phone number can't be blank")
-    end 
+    end
     it 'phone_numberはハイフンが不要であること' do
       @pd.phone_number = '123-4567-8910'
       @pd.valid?
-      expect(@pd.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      expect(@pd.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
     end
     it 'phone_numberは11桁以内でないと購入できないこと' do
       @pd.phone_number = '123456789101'
       @pd.valid?
-      expect(@pd.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      expect(@pd.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
     end
     it 'tokenが空では購入できないこと' do
       @pd.token = ''

@@ -1,11 +1,10 @@
 class PurchaseDelivery
-
   include ActiveModel::Model
   attr_accessor :token, :postal_code, :shipping_area_id, :municipalities, :address, :phone_number, :building_name, :user_id, :item_id
 
   with_options presence: true do
-    validates :postal_code, format: {with: /-/ }
-    validates :phone_number, length: {maximum: 11 }
+    validates :postal_code, format: { with: /-/ }
+    validates :phone_number, length: { maximum: 11 }
     validates :shipping_area_id, numericality: { other_than: 1 }
     validates :municipalities, :address, :user_id, :item_id, :token
   end
