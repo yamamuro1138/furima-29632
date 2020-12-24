@@ -1,7 +1,9 @@
 class DeliverysController < ApplicationController
-  before_action :authenticate_user!, only: :index
+  before_action :authenticate_user!, only: [:index]
+  before_action :item_find, only: [:create, :index]
+  before_action :sold_out_item, only: [:index]
+
   def index
-    item_find
     @purchase_delivery = PurchaseDelivery.new
   end
 
@@ -12,14 +14,13 @@ class DeliverysController < ApplicationController
       @purchase_delivery.save
       return redirect_to root_path
     else
-      item_find
       render 'index'
     end
   end
   private
 
   def delivery_params
-   params.require(:purchase_delivery).permit(:postal_code, :shipping_area_id, :municipalities, :address, :phone_number, :building_name, :purchase_id, :item_id).merge(user_id: current_user.id,item_id: params[:item_id], token: params[:token])
+   params.require(:purchase_delivery).permit(:postal_code, :shipping_area_id, :municipalities, :address, :phone_number, :building_name, :item_id).merge(user_id: current_user.id,item_id: params[:item_id], token: params[:token])
   end
 
   def item_find
@@ -33,5 +34,9 @@ class DeliverysController < ApplicationController
       card: delivery_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def sold_out_item
+    redirect_to root_path if @item.purchase.present?
   end
 end 
