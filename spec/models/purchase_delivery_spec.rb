@@ -6,6 +6,7 @@ RSpec.describe PurchaseDelivery, type: :model do
       @pd = FactoryBot.build(:purchase_delivery)
     end
 
+   context "購入できる場合" do
     it '全ての値が正しく入力されていれば保存できること' do
       expect(@pd).to be_valid
     end
@@ -13,6 +14,8 @@ RSpec.describe PurchaseDelivery, type: :model do
       @pd.building_name = nil
       expect(@pd).to be_valid
     end
+   end
+   context "購入できない場合" do
     it 'postal_codeが空だと購入できない' do
       @pd.postal_code = ''
       @pd.valid?
@@ -68,5 +71,6 @@ RSpec.describe PurchaseDelivery, type: :model do
       @pd.valid?
       expect(@pd.errors.full_messages).to include("Item can't be blank")
     end
+   end
   end
 end
