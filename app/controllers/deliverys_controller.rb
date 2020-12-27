@@ -2,6 +2,7 @@ class DeliverysController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :item_find, only: [:create, :index]
   before_action :sold_out_item, only: [:index]
+  before_action :correct_user, only: [:index]
 
   def index
     @purchase_delivery = PurchaseDelivery.new
@@ -42,5 +43,11 @@ class DeliverysController < ApplicationController
 
   def sold_out_item
     redirect_to root_path if @item.purchase.present?
+  end
+
+  def correct_user
+    unless @purchase_delivery
+      redirect_to root_url
+    end
   end
 end
